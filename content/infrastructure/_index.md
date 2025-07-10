@@ -62,7 +62,7 @@ VPS---tailscale-------->inet;
 
 {{< /mermaid >}}
 
-Part of this will be **deploying** an internal Gitea, but just to help anyone following along, I will also be publishing a lot of the IaC to a public GitHub.
+Part of this will be deploying an internal Gitea, but just to help anyone following along, I will also be publishing a lot of the IaC to a public GitHub.
 
 The upcoming entry will be setting up a jumphost in management vlan the  with all our basic utilities for managing our infrastructure.
 
