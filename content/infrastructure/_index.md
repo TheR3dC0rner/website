@@ -5,9 +5,9 @@ tags: ["network", "intro","diagram","network diagram"]
 ---
 
 
-This blog is going to go through my journey of setting up my lab for deploying red team infrastructure. **It's** going to consist of building out the infrastructure in a development/staging environment, setting up our pipelines for building our C2s for easy deployment, creating a production-like environment, and finally deploying our redirectors in **a** cloud-based infrastructure that can reverse proxy to our internally-held C2s.
+This blog is going to go through my journey of setting up my lab for deploying red team infrastructure. It's going to consist of building out the infrastructure in a development/staging environment, setting up our pipelines for building our C2s for easy deployment, creating a production-like environment, and finally deploying our redirectors in a cloud-based infrastructure that can reverse proxy to our internally-held C2s.
 
-There are a lot of infrastructure deployments that I have seen that are mostly being deployed solely to the cloud, but the idea of this infrastructure is to contain as much as possible internally. This will help protect a lot of the infrastructure from blue team discovery except the external redirectors and the webpages they are displaying, and most importantly would be keeping any client data out of the cloud **and** into an infrastructure completely controlled by us.
+There are a lot of infrastructure deployments that I have seen that are mostly being deployed solely to the cloud, but the idea of this infrastructure is to contain as much as possible internally. This will help protect a lot of the infrastructure from blue team discovery except the external redirectors and the webpages they are displaying, and most importantly would be keeping any client data out of the cloud and into an infrastructure completely controlled by us.
 
 Below is a basic network diagram of the layout of the infrastructure to be built. 
 
