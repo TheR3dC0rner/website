@@ -70,6 +70,6 @@ I then want to follow it up with a crash course in Ansible since we will be inst
 
 Eventually, I will be deploying a single-master Kubernetes infrastructure in our lab staging VLAN and using Gitea to maintain the deployed applications with Flux. This will lead to building pipelines to deploy Sliver, Havoc, and Adaptix C2s.
 
-Well, that's a summary and an overview of what to expect in the future
+Well, that's a summary and an overview of what to expect in the future.  Look for the posts below:
 
 
