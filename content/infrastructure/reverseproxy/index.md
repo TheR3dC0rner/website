@@ -16,7 +16,7 @@ ansible-playbook -i 192.168.200.226 install_docker -u admin1
  
 After we have docker installed on that machine we can begin building our proxy server.  
 
-First ,we are going to create a Docker network
+We are going to need to create a Docker network for our Docker compose file to work correctly. 
 ```css
 docker network create proxy
 ```
@@ -70,7 +70,7 @@ volumes:
 
 # create this first before running the docker-compose - docker network create caddy
 networks:
-  caddy:
+  proxy:
     external: true
 ```
 
