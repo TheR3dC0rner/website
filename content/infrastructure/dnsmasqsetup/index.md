@@ -14,35 +14,35 @@ I am using Openwrt as a firewall/router for my vlans and firewall.  One of its f
 After deploying the machine on our network we will use our simple Ansible playbook to make sure the machine is up to date.  Ansible uses inventory files to specify what machine to perform its configuration on but you can specify machines directly on the command line by ending the list with a ,
 
 
-```Copy
+```css
 ansible-playbook osupdate.yaml -i 192.168.200.96, -u admin1
 ```
 
 Once we ssh in the machine we are going to setup dnsmasq
 
-```Copy
+```css
 sudo apt-get install dnsmasq
 ```
 We have to disable systemd-resolved because this will interfere with dnsmasq
 
-```Copy
+```css
 systemctl disable systemd-resolved
 systemctl stop systemd-resolved
 ```
 
 Then we have to delete the current symbolic link for /etc/resolv.com
-```Copy
+```css
 sudo rm /etc/resolv.conf
 ```
 
 Once that is done. create a new file with the nameserver that you use for your lan 
 
-```Copy
+```css
 sudo echo nameserver 192.168.2.1 > /etc/resolv.conf
 ```
 
 We are then going to create a second resolver for dnsmasq itself
-```Copy
+```css
 sudo echo nameserver 8.8.8.8 > /etc/resolv.dns
 ```
 
@@ -50,13 +50,13 @@ Now let's configure dnsmasq.  I usually create separate config files in dnsmasq.
 
 First we are going to create a resolv.conf to point to that resolv.dns file.  I found that if dnsmasq points to my actual router it can create a weird recursive dns loop.
 
-```Copy
+```css
 sudo echo "resolv-file = /etc/resolv.dns" > /etc/dnsmasq.d/resolv.conf
 ```
 
 Next we we want a to make a listener configuration file.  This allows dnsmasq to listen from other subnets then itself.  This allows the dns forward to work.
 
-```Copy
+```css
 sudo echo "listen-address=127.0.0.1,192.168.200.95" > /etc/dnsmasq.d/listen.conf
 ```
 Finally, we can create a file to do custom dns zones
@@ -65,7 +65,7 @@ sudo echo "addn-hosts=/etc/dnsmasq.d/dns/" > custom_dns.conf
 ```
 
 Now we need a directory to store those custom dns files
-```Copy
+```css
 mkdir /etc/dnsmasq.d/dns/
 ```
 
@@ -73,7 +73,7 @@ I named my zone file /etc/dnsmasq.d/redcorner.conf
 
 My current zone file looks like this
 
-```Copy
+```css
 192.168.200.226 identity.dev.th3redc0rner.com
 192.168.200.226 gitea.dev.th3redc0rner.com
 ```
@@ -82,7 +82,7 @@ This points both sites to the reverse proxy which I will walk through in the nex
 
 The last thing to do is to actually start the dns server
 
-```Copy
+```css
 systemctl restart dnsmasq
 ```
 
