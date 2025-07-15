@@ -17,7 +17,7 @@ Roles in ansible I like to think of as lego blocks you can create to build make 
 
 Since Ansible is already installed on our machine lets prep a directory for this repo.  First we are going to make a directory and then use git to initialize it and then 
 
-```C
+```css
 mkdir -p infrascripts/ansible/roles
 cd infrascripts/roles
 git init --initial-branch=main
@@ -25,28 +25,28 @@ git init --initial-branch=main
 
 In the role directory we are going to start making our own custom role
 
-```C
+```css
 ansible-galaxy role init osupdate
 
 ```
 
 We're are also going to install an already existing role by Jeff Geerling for installing docker.  We are going to retrieve from the Ansible Galaxy store which is a large repo of preconfigured roles and collections.  It's a good place to check before writing your own.  
 
-```C
+```css
 ansible-galaxy role install geerlingguy.docker
 ```
 
 Now lets make our custom role.  This will be for just updating the OS in our environment.  
 
 So we want to cd into the tasks directory of this role and make a main.yaml file for this role and then edit it.   main.yaml in the directories is the default file Ansible is looking for.  
-```C
+```css
 vi roles/osupdate/tasks/main.yaml
 
 ```
 
 Should would be like this
 
-```C
+```css
 
     - name: Update apt repo and cache on all Debian/Ubuntu boxes
       apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
@@ -61,7 +61,7 @@ Should would be like this
 
     
      
-```C
+```css
 - To break this down, we are basically going to do an apt-get update
 
 - Then an apt-get dist-upgrade -y
@@ -72,11 +72,11 @@ Should would be like this
 
 In the handlers directory we are going to edit the main.yaml file.   In Ansible you can send tasks to handlers.  That's what the notify file call says.  
 
-```C
+```css
 vi roles/osupdate/handlers/main.yaml
 ```
 
-```C
+```css
 - name: Reboot Box
   ansible.builtin.reboot:
     msg: "Reboot initiated by Ansible for kernel updates"
@@ -93,7 +93,7 @@ We’ll create a general OS update script to run periodically, and a Docker inst
 
 The first script we are going to make is the docker install script so lets make an install_docker.yaml
 
-```C
+```css
 ---
 - hosts: all
   become: true
@@ -121,7 +121,7 @@ So lets break this down
 
 The last script we are going to do is just the OS update script and its much simpler.  So in an osupdate.yaml file put the following:
 
-```C
+```css
 - hosts: all
   become: true
 
