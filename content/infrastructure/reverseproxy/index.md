@@ -1,8 +1,8 @@
 ---
 title: "Reverse Proxy Setup"
 summary:  "Creating our internl reverse proxy"
-date: 2025-07-114
-tags: ["deployment", "revers", "proxy']
+date: 2025-07-14
+tags: ["deployment", "revers", "proxy"]
 
 ---
 We are going to use a single proxy server to host up our tls certificates in our network. Caddy can support dns-01 acme challenge from Let's Encrypt and renew the cert automatically so it seems like a good candidate to this.  This will provide an trusted SSL certificate for any machine behind our reverse proxy without us requesting one for each machine.
