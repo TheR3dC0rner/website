@@ -3,7 +3,7 @@ title: "Intro To Ansible"
 summary:  "Creating some basic ansible scripts as an intro to help our deloyment"
 date: 2025-07-10
 tags: ["deployment", "ansible", "scripting"]
-
+draft: true
 ---
 
 
