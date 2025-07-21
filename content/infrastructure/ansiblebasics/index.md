@@ -7,7 +7,6 @@ draft: false
 ---
 
 
-##An Intro To Ansible
 This is going to be a crash course in Ansible and we are going to create 2 ansible roles and combine them into a machine prep script.
 
 First ansible is an automation scripting tool for configuration and management of machines which is agentless.  It mostly depends upon ssh which also means ssh keys. 
