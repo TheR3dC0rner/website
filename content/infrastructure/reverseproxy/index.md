@@ -21,16 +21,16 @@ We are going to need to create a Docker network for our Docker compose file to w
 docker network create proxy
 ```
 
-Next we are going to create a caddy direrectory
+Next we are going to create a caddy directory
 ```css
 mkdir -p caddy
 mkdir -p caddy/caddy-data
 mkdir -p caddy/caddy-config
 ```
 
-A lot of this came from Jim’s Garage, so we’re modifying his files to build our setup.  To see his github https://github.com/JamesTurland/JimsGarage.
+A lot of this came from Jim's Garage, so we are going modifying his files to build our setup.  You can find his GitHub repository at https://github.com/JamesTurland/JimsGarage.
 
-As previously discussed I had registered Th3redC0rner.com as my domain and we are going to build our proxy to server our internal urls.
+As previously discussed I had registered Th3redC0rner.com as my domain and we are going to build our proxy to serve our internal urls.
 
 The internal domain we will use is dev.th3redc0rner.com 
 
@@ -68,7 +68,7 @@ volumes:
   caddy-config:
   caddy-data:
 
-# create this first before running the docker-compose - docker network create caddy
+# create this first before running the docker-compose - docker network create proxy
 networks:
   proxy:
     external: true
@@ -117,7 +117,7 @@ CF_API_TOKEN=1ufPvdNumd2MJd9jBQmPSPLRweLu_VrNgcW1shxy
 CF_EMAIL=your@email.com
 
 ```
-This is not my real api key its just an example
+This is not my real api key it's just an example
 
 We then want to ssh into our internal dns.  In the /etc/dnsmasq.d/dns/redcorner.conf we want to add the entries similar to these entries. 
 
@@ -137,6 +137,6 @@ docker compose build
 docker compose up
 ```
 
-If configured correctly you should see in the logs that Caddy will grab a wildcard cert from letsencrypt.  There is nothing hosted yet on the backend though.  That is our next blog.
+If configured correctly you should see in the logs that Caddy will grab a wildcard cert from Let's Encrypt.  There is nothing hosted yet on the backend though.  That is our next blog.
 
 
