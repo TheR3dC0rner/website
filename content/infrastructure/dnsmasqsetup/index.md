@@ -1,9 +1,9 @@
 ---
 title: "Internal DNS Setup"
 summary:  "Creating our internl dns"
-date: 2025-07-11
+date: 2025-07-26
 tags: ["deployment", "dns"]
-draft: true
+draft: false
 ---
 
 
