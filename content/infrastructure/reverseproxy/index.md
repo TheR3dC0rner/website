@@ -1,11 +1,11 @@
 ---
 title: "Reverse Proxy Setup"
 summary:  "Creating our internl reverse proxy"
-date: 2025-07-14
+date: 2025-08-02
 tags: ["deployment", "revers", "proxy"]
-draft: true
+draft: false
 ---
-We are going to use a single proxy server to host up our tls certificates in our network. Caddy can support dns-01 acme challenge from Let's Encrypt and renew the cert automatically so it seems like a good candidate to this.  This will provide an trusted SSL certificate for any machine behind our reverse proxy without us requesting one for each machine.
+Now that our internal dns is working we are going to use a single proxy server to host up our tls certificates in our network. Caddy can support dns-01 acme challenge from Let's Encrypt and renew the cert automatically so it seems like a good candidate to this.  This will provide an trusted SSL certificate for any machine behind our reverse proxy without us requesting one for each machine.
 
 The first thing we are going to do is install docker on this machine using the playbook we previously made.
 
