@@ -3,16 +3,16 @@ title: "Setting Up An Identity Manager"
 summary:  "Setting Up PocketID as an Identity Manager"
 date: 2025-07-17
 tags: ["deployment", "identity", "authentication"]
-draft: true
+draft: false
 ---
 
 
 
 
-## Configuring Idenity Manger
+## Configuring The Identity Manager
  
 
-We are going to deploy an ODIC identity manger called PocketID.  It's very fast and easty to setup and manage. 
+We are going to deploy an OIDC identity manager called PocketID.  It's very fast and easy to setup and manage. 
 I started by deploying Docker using our Ansible playbook on this new machine. Then I added a DNS entry for identity.dev.th3redc0rner.com on our DNS box and pointed it to our reverse proxy — this lets the proxy serve the site over TLS.
 
 
@@ -20,12 +20,12 @@ I started by deploying Docker using our Ansible playbook on this new machine. Th
 192.168.200.226 identity.dev.th3redc0rner.com
 ```
 
-Then we have to make sure dnsmasq has been restarted
+Then we we restart dnsmasq
 ```css
 systemctl restart dnsmasq
 ```
 
-PocketID requires to be over TLS  so i made the following entry in our caddy reverse proxy.  The config file should look something similar to this config file now.  This was in the Caddyfile in our reverse proxy setup.  This is getting our wildcard certs from LetEncrypt and using Cloudflare to verify them.  
+PocketID requires running over TLS so i made the following entry in our Caddy reverse proxy.  The config file should now look something similar to this.  This was in the Caddyfile in our reverse proxy setup.  This is getting our wildcard certs from Let's Encrypt and using Cloudflare to verify them.  
 
 ```css
 *.dev.th3redc0rner.com {
@@ -59,7 +59,7 @@ Then we are going to grab the necessary files
 
  curl -o .env https://raw.githubusercontent.com/pocket-id/pocket-id/main/.env.example
 ```
-We are then going to edit the file .env to make our identity uri match the vairable
+We are then going to edit the file .env to make our identity uri match the variable
 ```css
 # See the documentation for more information: https://pocket-id.org/docs/configuration/environment-variables
 APP_URL=https://identity.dev.th3redc0rner.com
@@ -91,7 +91,7 @@ services:
       start_period: 10s
 
 ```
-This is going to be exposed as http under port 1411 but the reverse proxy will give us the TLS connection need to be secure.  The reverse proxy is the only port exposed in my setup to the general internal lan. 
+In my setup the port 1411 is not exposed to anything but its local vlan.  The reverse proxy port 443 is only port being exposed on port 443 with TLS encryption due to ACL's on my VLANs. 
 
 
 Finally if everything is correct you should be able to access the PocketID site.
@@ -123,10 +123,10 @@ Click Next and you should get a QR code generated
 
 ![QR Code](images/QRCode.png)
 
-Scan that QR code and now you phone is acting as your password-less verification.  
+Scan that QR code and now your/ phone is acting as your password-less verification.  
 
 
-Now that we have completed this task one should be able to logout return the home page of PocketID and you will be presented with a screen simliar to this.
+Now that we have completed this task one should be able to logout return the home page of PocketID and you will be presented with a screen similar to this.
 
 ![Sign In](images/SignIn.png)
 
@@ -141,7 +141,7 @@ One can then login with QR Code.
 At this point you can choose 
 ![Other Device](images/OtherDevice.png)Use Another Device"
 
-Once again you should be presetned with the similar dialog with using a QR Code
+Once again you should be presented with the similar dialog with using a QR Code
 
 ![AltOptions](images/QRCodeOption.png)
 
@@ -149,7 +149,7 @@ Once again you should be presetned with the similar dialog with using a QR Code
 Choose Iphone, Ipad or Android Device
 
 A QR Code will be presented, if scanned one should now be authenticated as their admin user
-
+---
 Next entry we will actually be setting up GitTea now that all the backend infrastructure for it is in place
-
+---
 
