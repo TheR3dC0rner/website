@@ -1,7 +1,7 @@
 ---
 title: "Setting Up An Identity Manager"
 summary:  "Setting Up PocketID as an Identity Manager"
-date: 2025-07-17
+date: 2025-08-10
 tags: ["deployment", "identity", "authentication"]
 draft: false
 ---
