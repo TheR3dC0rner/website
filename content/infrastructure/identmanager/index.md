@@ -149,7 +149,8 @@ Once again you should be presented with the similar dialog with using a QR Code
 Choose Iphone, Ipad or Android Device
 
 A QR Code will be presented, if scanned one should now be authenticated as their admin user
----
+
+___
 Next entry we will actually be setting up GitTea now that all the backend infrastructure for it is in place
----
+___
 
