@@ -1,9 +1,9 @@
 ---
 title: "Setting Up Gitea Part1"
 summary:  "Setting up Gitea"
-date: 2025-07-19
+date: 2025-08-16
 tags: ["deployment", "git", "source","gitea"]
-draft: true
+draft: false
 ---
 
 This will walk through the basic install of Gitea and creating our admin account.  The second part will be setting up organizations and roles.  We will use the roles setup in that part to control deployments to the the Kubernetes cluster.
@@ -17,23 +17,23 @@ I gave this machine a bit more resources. They are as follows:
 8 gb of ram
 ```
 
-Now lets begin going through our setup.  
+Now let's begin going through our setup.  
 
-Like before, we are going to use a our playbook to deploy docker to our Gitea server from our jumphost.
+We will start by using our playbook to deploy docker to our Gitea server from our jumphost.
 
 ```css
 ansible-playboook install_docker.yaml -i 192.168.200.249, -u admin1
 ```
 
 Once we have logged in we are going to create a directory for gitea:
-```css
+```bash
 mkdir gitea
 cd gitea
 ```
 
 
 Now create our docker-compose.yaml
-```css
+```yaml
 networks:
   gitea:
     external: false
@@ -62,18 +62,18 @@ This is going to run Gitea on port 22.  I found that flux really does not like t
 
 To change ssh to listen on another port you have to edit
 
-`
+
 `/etc/ssh/sshd_config`
 
 
 Once you are editing the file your are going to add a single line
-```css
+```yaml
 Port 2222
 ```
 
 Then restart the SSH server and SSH should be running on port 2222.
 
-```css
+```bash
 systemctl restart ssh
 ```
 
@@ -81,7 +81,7 @@ Of course you have to reconnect to the box now that the SSH port has changed
 
 Now we can safely start the Gitea server. Go back into the directory that we created earlier with the docker compose file and start the server
 
-```css
+```bash
 docker compose up -d
 ```
 
@@ -118,7 +118,7 @@ The problem we will face now is that we can not reach the server from our main n
 
 Restart Caddy on reverse proxy to reload the config
 
-```
+```bash
 docker compose stop
 docker compose up -d
 ```
@@ -147,7 +147,7 @@ I found I need to make some additional changes for gitea to work for ssh.  Since
 
 On the dns server I need another entry just for ssh.  My DNS file now looks like this.
 
-```css
+```console
 192.168.200.226 identity.dev.th3redc0rner.com
 192.168.200.226 gitea.dev.thi4redc0rner.com
 192.168.200.249 gitssh.dev.th3redc0rner.com    
@@ -163,7 +163,7 @@ I edited the following file:
 I then changed the following in that file to match our dns server:
 
 
-```css
+```console
 [server]
 APP_DATA_PATH = /data/gitea
 DOMAIN = gitea.dev.th3redc0rner.com
@@ -178,7 +178,7 @@ SSH_LISTEN_PORT = 22
 
 After editing that file one has to restart Gitea.
 
-```css
+```bash
 docker compose down
 docker compose up
 ```
