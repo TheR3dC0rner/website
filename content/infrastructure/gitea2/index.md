@@ -1,14 +1,14 @@
 ---
 title: "Setting Up Gitea Part2"
 summary:  "Setting up Gitea part2, making users and organizations"
-date: 2025-07-25
+date: 2025-08-23
 tags: ["deployment", "git", "source","gitea"]
-draft: true
+draft: false
 ---
 
 Now that Gitea is running we want to connect it to our identity management system.  To this we are first going to create the OIDC client in PocketID. 
 
-Log in as an admin account in your PocketID and click on OIDC clients.
+Login with an admin account in your PocketID and click on OIDC clients.
 
 
 ![OIDC Client](<images/Pasted image 20250723070710.png>)
@@ -18,7 +18,7 @@ Then click OIDC client.
 
 ![Add Client](<images/Pasted image 20250723070734.png>)
 
-Give it a name and callback URL.  The callback URL should be your domain with the Same structure as below.
+Give it a name and callback URL.  The callback URL should be your domain with the same structure as below.
 
 It will look something like this.
 
@@ -28,7 +28,7 @@ This will generate a Client ID and Client Secret
 
 {{< alert >}}
 **Warning**
-This will be only time you will see the client secret, so store someplace secure for now.  
+This will be the only time you will see the client secret, so store someplace secure for now.  
 {{< /alert >}}
 
 ![Secret Key](<images/Pasted image 20250723071217.png>)
@@ -41,7 +41,7 @@ Under your profile you can find Site Administration
 ![Settings](<images/Pasted image 20250723081100.png>)
 From there, go to Identity & Access
 ![Identity](<images/Pasted image 20250723081224.png>)
-You then want to choose Authentication Sources and on the far right is the option for a "Adding Authentication Source"
+You then want to choose Authentication Sources and on the far right is the option for "Adding Authentication Source"
 
 ![Source](<images/Pasted image 20250723081346.png>)
 
@@ -51,7 +51,7 @@ Under Authentication name put PocketID
 Under OAuth2 Provider choose OpenID Connect
 
 
-The client ID and Client Secret is what PocketID Provided us.
+The Client ID and Client Secret come from PocketID.
 
 Under the "OpenID Connect Auto Discovery URL you want something Similar to this"
 
@@ -68,7 +68,7 @@ Logout of your admin account, then click on Sign In Again.
 If all went well you should be presented with a PocketID option.
 
 ![Sign In](<images/Pasted image 20250723082041.png>)
-Now try signing in with your account and should let you use a passykey to authenticate.
+Now try signing in with your account and should let you use a passkey to authenticate.
 
 Before creating our organizations I created two more users in my identity manager.
 
@@ -79,14 +79,14 @@ Bob will be our organization admin
 Sam will be a regular operator.  
 
 
-Now lets login as Bob in our Gitea instance.
+Now Let's login as Bob in our Gitea instance.
 
 ![Bob Login](<images/Pasted image 20250723220649.png>)
 First click on organizations after logging in.
 
-![Orgniziations](<images/Pasted image 20250723220955.png>)
+![Organizations](<images/Pasted image 20250723220955.png>)
 
-Then click on the **plus** symbol to create a new orgnization
+Then click on the **plus** symbol to create a new organization
 
 ![New Org](<images/Pasted image 20250723221102.png>)
 
@@ -100,7 +100,7 @@ So the first thing I did was create 3 repositories in our organization:
 
 
 
-Once the Organization is created we can setup our groups.  The first group I am going to make is RepoAdmins and am going to give that team Adminstrator Accesss to all repos.
+Once the Organization is created we can setup our groups.  The first group I am going to make is RepoAdmins and am going to give that team Administrator Access to all repos.
 
 
 ![RepoAdmins](<images/Pasted image 20250723221423.png>)
@@ -127,7 +127,7 @@ Click New Team:
 ![New Team](<images/Pasted image 20250723222651.png>)
 
 
-Operators will have admin access to specific repositores:
+Operators will have admin access to specific repositories:
 ![](images/Pasted image 20250723222848.png>)
 Once you have done that click on the Operators team and click repositories:
 
@@ -136,7 +136,7 @@ Search for exercises:
 ![](<images/Pasted image 20250723223109.png>)
 Then add it to this team.
 
-Now to get Sam into the group, log in as him. Gitea won't recongize a user until after their first login.
+Now to get Sam into the group, log in as him. Gitea won't recognize a user until after their first login.
 
 Once Sam is there click on members and search for him and Bob.  Add them both to this repo:
 
@@ -151,14 +151,15 @@ Under RepoAdmins add Bob only:
 
 ![](<images/Pasted image 20250723223339.png>)
 
-Now our organizations are setup we can now go back we can begin pushing our infrastructure scripts to the infrascripts.
+Now our organizations are setup we can now go back to our infrastructure scripts on our jumpehost and push them to to the infrascripts repo.
 
-Now we can go back to jumphost and get our ssh keys.  Now this was more for demo purposes to use Bob, i added myself to repoadmins also so my name is on my commits and not Bob.
+
+On our original jumphost we can retieve our ssh keys.  Now this was more for demo purposes to use Bob, i added myself to repoadmins also so my name is on my commits and not Bob.
 
 ![](<images/Pasted image 20250723224927.png>)
 
 
-We are now going to add these keys to a user -- in this case, I'll add them to my own account.
+The next step is to add these keys to a user -- in this case, I'll add them to my own account.
 
 To setup the ssh keys you click on ones profile image and click settings
 
@@ -177,10 +178,10 @@ One should end up with something like this
 
 ![](<images/Pasted image 20250724221728.png>)
 
-We can add the flux key the Same way
+We can add the flux key the same way
 ![](<images/Pasted image 20250724221927.png>)
 
-Lets verify the our keys are working.  
+Let's verify that our keys are working.  
 
 You should be able to do something similar to this:
 
@@ -188,12 +189,12 @@ You should be able to do something similar to this:
 ssh git@gitssh.dev.th3redc0rner.com -i ~/.ssh/admin1_git_ed25519_key
 ```
 
-If our key is working you will get the response similiar to this:
+If our key is working you will get the response similar to this:
 ```
 Hi there, skragen! You've successfully authenticated with the key named admin1_git_key, but Gitea does not provide shell access.
 ```
 
-To make things more convinent and cleaner I also added it to my ssh config file
+To make things more convenient and cleaner I also added it to my ssh config file
 
 ```css
 vi ~/.ssh/config
@@ -210,7 +211,7 @@ Host gitssh.dev.th3redc0rner.com
 ```
 So now that our keys are added to Gitea we can push our infrastructure repo.
 
-Lets go to the jumpbox.
+Let's go to the jumpbox.
 
 Go to our infrascripts directory.  Perform the following commands.
 
