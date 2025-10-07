@@ -16,29 +16,29 @@ In this entry we are going to focus on creating the deployment files for  our Ng
 
 First, go to your organization
 
-![Pasted image 20250926161131.png](attachments/Pasted%20image%2020250926161131.png)
+![Pasted image 20250926161131.png](images/Pasted%20image%2020250926161131.png)
 Click New Repository
 
-![Pasted image 20250926161215.png](attachments/Pasted%20image%2020250926161215.png)
+![Pasted image 20250926161215.png](images/Pasted%20image%2020250926161215.png)
 
 
 Create the repository, keep it public
 
 
-![Pasted image 20250926161322.png](attachments/Pasted%20image%2020250926161322.png)
+![Pasted image 20250926161322.png](images/Pasted%20image%2020250926161322.png)
 
 Click on teams
 
-![Pasted image 20250926161423.png](attachments/Pasted%20image%2020250926161423.png)
+![Pasted image 20250926161423.png](images/Pasted%20image%2020250926161423.png)
 
 Give our Operators Permission by clicking View
-![Pasted image 20250926161508.png](attachments/Pasted%20image%2020250926161508.png)
+![Pasted image 20250926161508.png](images/Pasted%20image%2020250926161508.png)
 Then click repositories
 
-![Pasted image 20250926161545.png](attachments/Pasted%20image%2020250926161545.png)
+![Pasted image 20250926161545.png](images/Pasted%20image%2020250926161545.png)
 Then adding our new repository
 
-![Pasted image 20250926161626.png](attachments/Pasted%20image%2020250926161626.png)
+![Pasted image 20250926161626.png](images/Pasted%20image%2020250926161626.png)
 
 Now we are going to add some test files.
 
@@ -239,14 +239,14 @@ ssh admin1@devadmin1.lan -L 0.0.0.0:4321:192.168.200.186:4321
 ```
 
 Then we connect to our AdaptixC2 instance
-![Pasted image 20250930214754.png](attachments/Pasted%20image%2020250930214754.png)
+![Pasted image 20250930214754.png](images/Pasted%20image%2020250930214754.png)
 
 Open the listener and right mouse click 
 
-![Pasted image 20250930214845.png](attachments/Pasted%20image%2020250930214845.png)
+![Pasted image 20250930214845.png](images/Pasted%20image%2020250930214845.png)
 
 Then create the listener  with URI being /uri
-![Pasted image 20250930215442.png](attachments/Pasted%20image%2020250930215442.png)
+![Pasted image 20250930215442.png](images/Pasted%20image%2020250930215442.png)
 
 For testing ,I copied the 2 snakeoil certificates that come with Kali to test the https backend.  
 
